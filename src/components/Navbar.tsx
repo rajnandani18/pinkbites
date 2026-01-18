@@ -43,7 +43,7 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Button className="gradient-button text-primary-foreground font-semibold rounded-full px-6 shadow-pink hover:shadow-pink-lg hover:scale-105 transition-all">
-              Order Now 💕
+              Order Now
             </Button>
           </div>
 
@@ -71,7 +71,7 @@ const Navbar = () => {
                 </a>
               ))}
               <Button className="gradient-button text-primary-foreground font-semibold rounded-full mt-2 shadow-pink">
-                Order Now 💕
+                Order Now
               </Button>
             </div>
           </div>

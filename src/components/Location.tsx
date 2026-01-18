@@ -9,7 +9,16 @@ const hours = [
 
 const Location = () => {
   return (
-    <section id="contact" className="py-20 gradient-hero">
+    <section id="contact" className="py-20 gradient-hero relative overflow-hidden">
+      {/* Doodle decorations */}
+      <svg className="absolute top-20 left-20 w-20 h-20 text-primary opacity-20" viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M40 10 L45 30 L65 35 L45 40 L40 60 L35 40 L15 35 L35 30 Z" strokeLinejoin="round" strokeDasharray="4 2"/>
+      </svg>
+      <svg className="absolute bottom-40 right-20 w-24 h-24 text-pink-soft opacity-30" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="50" cy="50" r="40" strokeDasharray="8 4"/>
+        <path d="M30 50 Q50 30 70 50 Q50 70 30 50"/>
+      </svg>
+
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
@@ -17,7 +26,7 @@ const Location = () => {
             Visit Us
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground mb-4">
-            Find PinkBites 📍
+            Find PinkBites
           </h2>
           <p className="font-body text-muted-foreground max-w-2xl mx-auto">
             We can't wait to serve you! Drop by our pink paradise or get in touch
@@ -28,19 +37,13 @@ const Location = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Map & Address */}
           <div className="space-y-6 animate-fade-in">
-            {/* Map Placeholder */}
-            <div className="rounded-3xl overflow-hidden shadow-pink-lg border-4 border-pink-soft/50 aspect-video bg-gradient-to-br from-pink-light to-cream">
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center p-6">
-                  <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
-                  <p className="font-display text-xl text-foreground">
-                    Interactive Map
-                  </p>
-                  <p className="font-cute text-sm text-muted-foreground">
-                    123 Pink Avenue, Sweet City
-                  </p>
-                </div>
-              </div>
+            {/* Map Image */}
+            <div className="rounded-3xl overflow-hidden shadow-pink-lg border-4 border-pink-soft/50 aspect-video">
+              <img 
+                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=450&fit=crop"
+                alt="Location map"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Address Card */}
@@ -56,9 +59,9 @@ const Location = () => {
                   <p className="font-body text-muted-foreground">
                     123 Pink Avenue, Suite 101
                     <br />
-                    Sweet City, SC 12345
+                    Connaught Place
                     <br />
-                    United States
+                    New Delhi, 110001
                   </p>
                 </div>
               </div>
@@ -79,7 +82,7 @@ const Location = () => {
                   </span>
                 </div>
                 <p className="font-body text-muted-foreground ml-13">
-                  (555) 123-PINK
+                  +91 98765 43210
                 </p>
               </div>
 
@@ -93,7 +96,7 @@ const Location = () => {
                   </span>
                 </div>
                 <p className="font-body text-muted-foreground ml-13">
-                  hello@pinkbites.com
+                  hello@pinkbites.in
                 </p>
               </div>
             </div>
@@ -128,7 +131,7 @@ const Location = () => {
             {/* Social Media */}
             <div className="bg-card rounded-3xl p-6 shadow-pink border border-border">
               <h3 className="font-display text-lg text-foreground mb-4 text-center">
-                Follow the Pink Life! 💕
+                Follow the Pink Life!
               </h3>
               <div className="flex justify-center gap-4">
                 <a
@@ -154,7 +157,7 @@ const Location = () => {
 
             {/* CTA */}
             <Button className="w-full gradient-button text-primary-foreground font-semibold rounded-full py-6 text-lg shadow-pink-lg hover:scale-105 transition-all">
-              Get Directions 🗺️
+              Get Directions
             </Button>
           </div>
         </div>
