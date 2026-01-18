@@ -25,7 +25,16 @@ const values = [
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-cream">
+    <section id="about" className="py-20 bg-cream relative overflow-hidden">
+      {/* Doodle decorations */}
+      <svg className="absolute top-20 right-20 w-24 h-24 text-pink-soft opacity-30" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M50 10 C70 30 70 70 50 90 C30 70 30 30 50 10" strokeLinejoin="round"/>
+      </svg>
+      <svg className="absolute bottom-40 left-10 w-16 h-16 text-primary opacity-20" viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="30" cy="30" r="25" strokeDasharray="5 3"/>
+        <circle cx="30" cy="30" r="15" strokeDasharray="3 3"/>
+      </svg>
+
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Story Content */}
@@ -34,7 +43,7 @@ const About = () => {
               Our Story
             </span>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mb-6">
-              About PinkBites 💖
+              About PinkBites
             </h2>
             <div className="space-y-4 font-body text-muted-foreground">
               <p>
@@ -56,7 +65,7 @@ const About = () => {
               </p>
               <p className="text-foreground font-semibold italic">
                 "Because every girl deserves to feel like a princess while
-                enjoying her favorite burger!" 👑
+                enjoying her favorite burger!"
               </p>
             </div>
 
@@ -80,21 +89,25 @@ const About = () => {
           {/* Image/Visual */}
           <div className="relative animate-slide-up">
             <div className="relative">
-              {/* Main Image Placeholder */}
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-pink-light via-pink-soft to-cream overflow-hidden shadow-pink-lg border-4 border-pink-soft/50">
-                <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center">
-                  <p className="text-9xl mb-4">👩‍🍳</p>
-                  <p className="font-display text-2xl text-foreground">The Pink Squad</p>
-                  <p className="font-cute text-muted-foreground">Cooking up happiness daily!</p>
-                </div>
+              {/* Main Image */}
+              <div className="aspect-square rounded-3xl overflow-hidden shadow-pink-lg border-4 border-pink-soft/50">
+                <img 
+                  src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&h=600&fit=crop"
+                  alt="Our restaurant team"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -top-6 -left-6 bg-card rounded-2xl p-4 shadow-pink float border border-border">
-                <p className="text-4xl">🎀</p>
+              {/* Floating Elements with doodle style borders */}
+              <div className="absolute -top-6 -left-6 bg-card rounded-2xl p-3 shadow-pink float border-2 border-dashed border-primary">
+                <img 
+                  src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=100&h=100&fit=crop"
+                  alt="Burger"
+                  className="w-14 h-14 rounded-xl object-cover"
+                />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-primary rounded-2xl p-4 shadow-pink float border border-border" style={{ animationDelay: "0.5s" }}>
-                <p className="text-4xl">💝</p>
+              <div className="absolute -bottom-6 -right-6 bg-primary rounded-2xl p-3 shadow-pink float" style={{ animationDelay: "0.5s" }}>
+                <Heart className="w-8 h-8 text-primary-foreground fill-current" />
               </div>
             </div>
           </div>
@@ -104,7 +117,7 @@ const About = () => {
         <div className="mt-20">
           <div className="text-center mb-12">
             <h3 className="font-display text-3xl text-foreground">
-              Our Pink Promise 🌸
+              Our Pink Promise
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -1,26 +1,39 @@
-import { Sparkles, Heart, Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen gradient-hero overflow-hidden pt-20">
-      {/* Decorative Elements */}
+      {/* Doodle SVG Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 text-pink-soft opacity-60 float">
-          <Heart className="w-8 h-8 fill-current" />
-        </div>
-        <div className="absolute top-40 right-20 text-accent opacity-50 sparkle">
-          <Star className="w-6 h-6 fill-current" />
-        </div>
-        <div className="absolute bottom-40 left-20 text-pink-medium opacity-40 float" style={{ animationDelay: "1s" }}>
-          <Sparkles className="w-10 h-10" />
-        </div>
-        <div className="absolute top-1/3 right-10 text-coral opacity-50 sparkle" style={{ animationDelay: "0.5s" }}>
-          <Heart className="w-5 h-5 fill-current" />
-        </div>
-        <div className="absolute bottom-1/4 right-1/4 text-pink-soft opacity-60 float" style={{ animationDelay: "1.5s" }}>
-          <Star className="w-7 h-7 fill-current" />
-        </div>
+        {/* Doodle swirl top left */}
+        <svg className="absolute top-24 left-8 w-16 h-16 text-primary opacity-40 float" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M50 10 Q 90 50 50 90 Q 10 50 50 10" strokeLinecap="round"/>
+          <circle cx="50" cy="10" r="4" fill="currentColor"/>
+        </svg>
+        
+        {/* Doodle star */}
+        <svg className="absolute top-40 right-20 w-12 h-12 text-pink-medium opacity-50 sparkle" viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M25 5 L28 20 L45 25 L28 30 L25 45 L22 30 L5 25 L22 20 Z" strokeLinejoin="round"/>
+        </svg>
+        
+        {/* Doodle heart */}
+        <svg className="absolute bottom-40 left-20 w-14 h-14 text-primary opacity-40 float" style={{ animationDelay: "1s" }} viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M25 45 L10 30 Q0 20 10 10 Q20 0 25 10 Q30 0 40 10 Q50 20 40 30 Z" strokeLinejoin="round"/>
+        </svg>
+        
+        {/* Doodle circle */}
+        <svg className="absolute top-1/3 right-10 w-10 h-10 text-pink-soft opacity-50 sparkle" style={{ animationDelay: "0.5s" }} viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="25" cy="25" r="20" strokeDasharray="5 3"/>
+        </svg>
+        
+        {/* Doodle burger sketch */}
+        <svg className="absolute bottom-1/4 right-1/4 w-20 h-20 text-primary opacity-30 float" style={{ animationDelay: "1.5s" }} viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2">
+          <ellipse cx="40" cy="20" rx="30" ry="10"/>
+          <path d="M10 30 Q40 40 70 30"/>
+          <path d="M10 45 Q40 35 70 45"/>
+          <ellipse cx="40" cy="55" rx="30" ry="10"/>
+        </svg>
       </div>
 
       <div className="container mx-auto px-4 py-12 md:py-20">
@@ -28,9 +41,9 @@ const Hero = () => {
           {/* Content */}
           <div className="flex-1 text-center lg:text-left space-y-6 animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-card/80 backdrop-blur-sm rounded-full px-4 py-2 border border-border shadow-sm">
-              <Sparkles className="w-4 h-4 text-primary" />
+              <Star className="w-4 h-4 text-primary" />
               <span className="font-cute text-sm font-medium text-foreground">
-                Pretty Food for Pretty People ✨
+                Pretty Food for Pretty People
               </span>
             </div>
 
@@ -42,7 +55,7 @@ const Hero = () => {
 
             <p className="font-body text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
               Indulge in our dreamy burgers & crispy fries, crafted with love and
-              a sprinkle of magic. Every bite is a pink-tastic experience! 🍔💖
+              a sprinkle of magic. Every bite is a pink-tastic experience!
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -50,14 +63,14 @@ const Hero = () => {
                 size="lg"
                 className="gradient-button text-primary-foreground font-semibold rounded-full px-8 py-6 text-lg shadow-pink-lg hover:scale-105 transition-all"
               >
-                View Our Menu 🍟
+                View Our Menu
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="rounded-full px-8 py-6 text-lg border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all font-semibold"
               >
-                Find Us 📍
+                Find Us
               </Button>
             </div>
 
@@ -68,7 +81,7 @@ const Hero = () => {
                 <p className="font-cute text-sm text-muted-foreground">Happy Customers</p>
               </div>
               <div className="text-center">
-                <p className="font-display text-3xl md:text-4xl text-primary">4.9★</p>
+                <p className="font-display text-3xl md:text-4xl text-primary">4.9</p>
                 <p className="font-cute text-sm text-muted-foreground">Average Rating</p>
               </div>
               <div className="text-center">
@@ -84,23 +97,31 @@ const Hero = () => {
               {/* Background Blob */}
               <div className="absolute inset-0 bg-pink-soft rounded-full blur-3xl opacity-60 scale-110" />
               
-              {/* Main Burger Illustration */}
+              {/* Main Burger Image */}
               <div className="relative z-10 p-8">
-                <div className="aspect-square rounded-full bg-gradient-to-br from-card to-pink-light shadow-pink-lg flex items-center justify-center overflow-hidden border-4 border-pink-soft/50">
-                  <div className="text-center p-8">
-                    <p className="text-8xl md:text-9xl bounce-gentle">🍔</p>
-                    <p className="font-display text-2xl text-primary mt-4">Signature Burger</p>
-                    <p className="font-cute text-muted-foreground">Our best seller!</p>
-                  </div>
+                <div className="aspect-square rounded-full bg-gradient-to-br from-card to-pink-light shadow-pink-lg overflow-hidden border-4 border-pink-soft/50">
+                  <img 
+                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=600&fit=crop"
+                    alt="Delicious signature burger"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 bg-card rounded-2xl p-4 shadow-pink float border border-border">
-                <p className="text-4xl">🍟</p>
+              {/* Floating Food Images */}
+              <div className="absolute -top-4 -right-4 bg-card rounded-2xl p-2 shadow-pink float border border-border overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=100&h=100&fit=crop"
+                  alt="Crispy fries"
+                  className="w-16 h-16 rounded-xl object-cover"
+                />
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-card rounded-2xl p-4 shadow-pink float border border-border" style={{ animationDelay: "0.7s" }}>
-                <p className="text-4xl">🥤</p>
+              <div className="absolute -bottom-4 -left-4 bg-card rounded-2xl p-2 shadow-pink float border border-border overflow-hidden" style={{ animationDelay: "0.7s" }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=100&h=100&fit=crop"
+                  alt="Milkshake"
+                  className="w-16 h-16 rounded-xl object-cover"
+                />
               </div>
               <div className="absolute top-1/2 -right-8 bg-primary rounded-full p-3 shadow-pink sparkle">
                 <Heart className="w-5 h-5 text-primary-foreground fill-current" />

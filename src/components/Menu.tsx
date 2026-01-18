@@ -10,9 +10,9 @@ const menuItems = [
     id: 1,
     name: "Pink Princess Burger",
     description: "Juicy beef patty, pink sauce, pickles, and love",
-    price: 12.99,
+    price: 299,
     category: "Burgers",
-    emoji: "🍔",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
     badge: "Best Seller",
     badgeColor: "bg-primary",
     rating: 4.9,
@@ -21,58 +21,58 @@ const menuItems = [
     id: 2,
     name: "Barbie Dream Burger",
     description: "Double patty, bacon, cheese & special glitter sauce",
-    price: 15.99,
+    price: 399,
     category: "Burgers",
-    emoji: "🍔",
+    image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop",
     badge: "New",
-    badgeColor: "bg-coral",
+    badgeColor: "bg-pink-medium",
     rating: 4.8,
   },
   {
     id: 3,
     name: "Sweet Heart Burger",
     description: "Chicken patty, honey mustard & heart-shaped bun",
-    price: 11.99,
+    price: 279,
     category: "Burgers",
-    emoji: "🍔",
+    image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=400&fit=crop",
     rating: 4.7,
   },
   {
     id: 4,
     name: "Rose Gold Fries",
     description: "Crispy seasoned fries with pink himalayan salt",
-    price: 4.99,
+    price: 129,
     category: "Fries",
-    emoji: "🍟",
+    image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop",
     badge: "Fan Favorite",
-    badgeColor: "bg-accent",
+    badgeColor: "bg-pink-soft text-foreground",
     rating: 4.9,
   },
   {
     id: 5,
     name: "Glitter Cheese Fries",
     description: "Loaded with melted cheese & sparkle seasoning",
-    price: 6.99,
+    price: 179,
     category: "Fries",
-    emoji: "🍟",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=400&fit=crop",
     rating: 4.8,
   },
   {
     id: 6,
     name: "Sweet Potato Blush",
     description: "Sweet potato fries with cinnamon sugar dust",
-    price: 5.99,
+    price: 149,
     category: "Fries",
-    emoji: "🍠",
+    image: "https://images.unsplash.com/photo-1604152135912-04a022e23696?w=400&h=400&fit=crop",
     rating: 4.6,
   },
   {
     id: 7,
     name: "Pink Lemonade",
     description: "Fresh squeezed with a hint of strawberry",
-    price: 3.99,
+    price: 99,
     category: "Drinks",
-    emoji: "🍋",
+    image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=400&fit=crop",
     badge: "Refreshing",
     badgeColor: "bg-pink-medium",
     rating: 4.8,
@@ -81,27 +81,27 @@ const menuItems = [
     id: 8,
     name: "Berry Bliss Shake",
     description: "Strawberry milkshake with whipped cream & hearts",
-    price: 5.99,
+    price: 149,
     category: "Drinks",
-    emoji: "🥤",
+    image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=400&fit=crop",
     rating: 4.9,
   },
   {
     id: 9,
     name: "Cotton Candy Float",
     description: "Vanilla ice cream with cotton candy soda",
-    price: 6.49,
+    price: 169,
     category: "Drinks",
-    emoji: "🍦",
+    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop",
     rating: 4.7,
   },
   {
     id: 10,
     name: "Princess Combo",
     description: "Pink Princess Burger + Rose Gold Fries + Pink Lemonade",
-    price: 18.99,
+    price: 449,
     category: "Combos",
-    emoji: "👑",
+    image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=400&fit=crop",
     badge: "Best Value",
     badgeColor: "bg-primary",
     rating: 5.0,
@@ -110,20 +110,20 @@ const menuItems = [
     id: 11,
     name: "Barbie Box",
     description: "Barbie Dream Burger + Glitter Fries + Berry Shake",
-    price: 24.99,
+    price: 599,
     category: "Combos",
-    emoji: "💝",
+    image: "https://images.unsplash.com/photo-1551782450-17144efb9c50?w=400&h=400&fit=crop",
     badge: "Premium",
-    badgeColor: "bg-accent",
+    badgeColor: "bg-pink-medium",
     rating: 4.9,
   },
   {
     id: 12,
     name: "Sweet Treat Duo",
     description: "Sweet Heart Burger + Sweet Potato Blush + Any Drink",
-    price: 19.99,
+    price: 499,
     category: "Combos",
-    emoji: "🎀",
+    image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop",
     rating: 4.8,
   },
 ];
@@ -137,7 +137,16 @@ const Menu = () => {
       : menuItems.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="menu" className="py-20 bg-cream">
+    <section id="menu" className="py-20 bg-cream relative overflow-hidden">
+      {/* Doodle decorations */}
+      <svg className="absolute top-10 right-10 w-24 h-24 text-pink-soft opacity-30" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="50" cy="50" r="40" strokeDasharray="8 4"/>
+        <circle cx="50" cy="50" r="25" strokeDasharray="4 4"/>
+      </svg>
+      <svg className="absolute bottom-20 left-10 w-20 h-20 text-primary opacity-20" viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M10 40 Q40 10 70 40 Q40 70 10 40" strokeLinejoin="round"/>
+      </svg>
+
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
@@ -145,7 +154,7 @@ const Menu = () => {
             Our Delicious Offerings
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground mb-4">
-            The Pink Menu 🌸
+            The Pink Menu
           </h2>
           <p className="font-body text-muted-foreground max-w-2xl mx-auto">
             Every dish is crafted with love, served with a smile, and guaranteed
@@ -188,10 +197,14 @@ const Menu = () => {
                 </Badge>
               )}
 
-              {/* Emoji & Name */}
+              {/* Image & Name */}
               <div className="flex items-start gap-4 mb-4">
-                <div className="text-5xl group-hover:scale-110 transition-transform">
-                  {item.emoji}
+                <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform border-2 border-pink-soft">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-display text-xl text-foreground mb-1">
@@ -206,14 +219,14 @@ const Menu = () => {
               {/* Rating & Price */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 text-accent fill-current" />
+                  <Star className="w-4 h-4 text-primary fill-current" />
                   <span className="font-cute text-sm font-semibold text-foreground">
                     {item.rating}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="font-display text-2xl text-primary">
-                    ${item.price}
+                    ₹{item.price}
                   </span>
                   <Button
                     size="sm"
@@ -233,7 +246,7 @@ const Menu = () => {
             size="lg"
             className="gradient-button text-primary-foreground font-semibold rounded-full px-10 py-6 text-lg shadow-pink-lg hover:scale-105 transition-all"
           >
-            View Full Menu ✨
+            View Full Menu
           </Button>
         </div>
       </div>

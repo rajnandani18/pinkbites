@@ -40,10 +40,10 @@ const Footer = () => {
             </a>
             <p className="font-body text-background/70 mb-4 max-w-sm">
               Serving up dreamy burgers and fabulous vibes since 2019. Because
-              every girl deserves a little pink in her life! 💕
+              every girl deserves a little pink in her life!
             </p>
             <p className="font-cute text-sm text-background/50">
-              123 Pink Avenue, Sweet City, SC 12345
+              123 Pink Avenue, Connaught Place, New Delhi 110001
             </p>
           </div>
 
@@ -103,7 +103,7 @@ const Footer = () => {
         <div className="border-t border-background/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-cute text-sm text-background/50">
-              © {currentYear} PinkBites. All rights reserved. Made with 💖
+              {currentYear} PinkBites. All rights reserved. Made with love.
             </p>
             <div className="flex gap-6">
               <a
