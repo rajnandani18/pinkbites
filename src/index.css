@@ -178,4 +178,47 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
   }
+
+  /* Magic cursor shimmer animation */
+  @keyframes shimmer {
+    0% { 
+      opacity: 0.6; 
+      transform: scale(1); 
+    }
+    100% { 
+      opacity: 0; 
+      transform: scale(2); 
+    }
+  }
+
+  @keyframes wand-glow {
+    0%, 100% { 
+      filter: drop-shadow(0 0 8px hsl(340 82% 65% / 0.6)); 
+    }
+    50% { 
+      filter: drop-shadow(0 0 15px hsl(340 82% 65% / 0.9)); 
+    }
+  }
+
+  .wand-glow {
+    animation: wand-glow 1.5s ease-in-out infinite;
+  }
+
+  /* Hide default cursor when magic cursor is active */
+  .magic-cursor-active {
+    cursor: none;
+  }
+
+  .magic-cursor-active * {
+    cursor: none !important;
+  }
+
+  .magic-cursor-active a,
+  .magic-cursor-active button,
+  .magic-cursor-active [role="button"],
+  .magic-cursor-active input,
+  .magic-cursor-active textarea,
+  .magic-cursor-active select {
+    cursor: none !important;
+  }
 }
