@@ -204,167 +204,76 @@ const Menu = () => {
         </div>
 
         {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
-              className="relative group animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`bg-card rounded-3xl p-6 shadow-pink hover:shadow-pink-lg transition-all hover:-translate-y-2 border-2 ${item.borderColor} group animate-scale-in`}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                boxShadow: `0 8px 30px ${item.accentColor}25`,
+              }}
             >
-              {/* Doodle Border SVG */}
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                viewBox="0 0 300 280"
-                preserveAspectRatio="none"
-                fill="none"
-                style={{ zIndex: 1 }}
-              >
-                {/* Hand-drawn wobbly rectangle border */}
-                <path
-                  d="M20 15 
-                     Q 25 8, 50 10 
-                     L 120 8 
-                     Q 150 5, 180 9 
-                     L 250 12 
-                     Q 280 10, 285 20 
-                     Q 290 50, 288 100 
-                     L 290 180 
-                     Q 292 220, 288 250 
-                     Q 285 268, 270 270 
-                     L 180 273 
-                     Q 150 276, 100 272 
-                     L 40 270 
-                     Q 15 268, 12 250 
-                     Q 8 200, 10 150 
-                     L 8 80 
-                     Q 6 40, 12 25 
-                     Q 15 12, 20 15 Z"
-                  stroke={item.accentColor}
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                  strokeDasharray="0"
-                  className="transition-all duration-300 group-hover:stroke-[4]"
-                  style={{ 
-                    filter: `drop-shadow(0 2px 4px ${item.accentColor}40)`,
-                  }}
-                />
-                {/* Decorative corner doodles */}
-                <circle cx="20" cy="15" r="4" fill={item.accentColor} opacity="0.6" />
-                <circle cx="280" cy="15" r="3" fill={item.accentColor} opacity="0.5" />
-                <circle cx="15" cy="265" r="3" fill={item.accentColor} opacity="0.5" />
-                <circle cx="285" cy="268" r="4" fill={item.accentColor} opacity="0.6" />
-                
-                {/* Small decorative stars */}
-                <path 
-                  d="M275 30 L277 26 L279 30 L283 28 L279 32 L281 36 L277 34 L273 36 L275 32 L271 28 Z" 
-                  fill={item.accentColor} 
-                  opacity="0.4"
-                  className="group-hover:opacity-70 transition-opacity"
-                />
-                <path 
-                  d="M25 250 L27 246 L29 250 L33 248 L29 252 L31 256 L27 254 L23 256 L25 252 L21 248 Z" 
-                  fill={item.accentColor} 
-                  opacity="0.4"
-                  className="group-hover:opacity-70 transition-opacity"
-                />
-              </svg>
+              {/* Badge */}
+              {item.badge && (
+                <Badge
+                  className={`${item.badgeColor} text-white font-cute mb-3`}
+                >
+                  {item.badge === "Best Seller" && <Flame className="w-3 h-3 mr-1" />}
+                  {item.badge}
+                </Badge>
+              )}
 
-              {/* Card Content */}
-              <div 
-                className="relative bg-card rounded-3xl p-6 mx-3 my-2 transition-all hover:-translate-y-2 group-hover:shadow-xl"
-                style={{ 
-                  zIndex: 2,
-                  boxShadow: `0 8px 30px ${item.accentColor}15`,
-                }}
-              >
-                {/* Badge */}
-                {item.badge && (
-                  <Badge
-                    className={`${item.badgeColor} text-white font-cute mb-3`}
-                  >
-                    {item.badge === "Best Seller" && <Flame className="w-3 h-3 mr-1" />}
-                    {item.badge}
-                  </Badge>
-                )}
-
-                {/* Image & Name */}
-                <div className="flex items-start gap-4 mb-4">
-                  <div 
-                    className="relative w-20 h-20 shrink-0 group-hover:scale-105 transition-transform"
-                  >
-                    {/* Doodle border for image */}
-                    <svg className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)]" viewBox="0 0 90 90" fill="none">
-                      <path
-                        d="M15 10 Q45 5, 75 10 Q85 15, 82 45 Q85 75, 75 80 Q45 85, 15 80 Q5 75, 8 45 Q5 15, 15 10 Z"
-                        stroke={item.accentColor}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        fill="none"
-                        opacity="0.7"
-                      />
-                    </svg>
-                    <img 
-                      src={item.image} 
-                      alt={item.name}
-                      className="w-full h-full object-cover rounded-2xl relative z-10"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h3 
-                      className="font-display text-xl mb-1"
-                      style={{ color: item.accentColor }}
-                    >
-                      {item.name}
-                    </h3>
-                    <p className="font-body text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Doodle divider line */}
-                <svg className="w-full h-3 mb-3" viewBox="0 0 200 10" preserveAspectRatio="none">
-                  <path
-                    d="M0 5 Q20 2, 40 6 Q60 9, 80 4 Q100 1, 120 7 Q140 10, 160 5 Q180 2, 200 6"
-                    stroke={item.accentColor}
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    fill="none"
-                    opacity="0.4"
+              {/* Image & Name */}
+              <div className="flex items-start gap-4 mb-4">
+                <div 
+                  className={`w-20 h-20 rounded-2xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform border-2 ${item.borderColor}`}
+                  style={{ boxShadow: `0 4px 15px ${item.accentColor}30` }}
+                >
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover"
                   />
-                </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 
+                    className="font-display text-xl mb-1"
+                    style={{ color: item.accentColor }}
+                  >
+                    {item.name}
+                  </h3>
+                  <p className="font-body text-sm text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
 
-                {/* Rating & Price */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <Star 
-                      className="w-4 h-4 fill-current" 
-                      style={{ color: item.accentColor }}
-                    />
-                    <span className="font-cute text-sm font-semibold text-foreground">
-                      {item.rating}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span 
-                      className="font-display text-2xl"
-                      style={{ color: item.accentColor }}
-                    >
-                      ₹{item.price}
-                    </span>
-                    <Button
-                      size="sm"
-                      className="rounded-full text-white border-2 border-dashed"
-                      style={{ 
-                        backgroundColor: item.accentColor,
-                        borderColor: `${item.accentColor}80`,
-                      }}
-                    >
-                      <Heart className="w-4 h-4" />
-                    </Button>
-                  </div>
+              {/* Rating & Price */}
+              <div className="flex items-center justify-between pt-4 border-t border-border">
+                <div className="flex items-center gap-1">
+                  <Star 
+                    className="w-4 h-4 fill-current" 
+                    style={{ color: item.accentColor }}
+                  />
+                  <span className="font-cute text-sm font-semibold text-foreground">
+                    {item.rating}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span 
+                    className="font-display text-2xl"
+                    style={{ color: item.accentColor }}
+                  >
+                    ₹{item.price}
+                  </span>
+                  <Button
+                    size="sm"
+                    className="rounded-full text-white"
+                    style={{ backgroundColor: item.accentColor }}
+                  >
+                    <Heart className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
             </div>
