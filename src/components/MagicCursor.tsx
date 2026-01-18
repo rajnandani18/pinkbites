@@ -8,6 +8,9 @@ interface Particle {
   opacity: number;
   rotation: number;
   type: 'sparkle' | 'star' | 'circle';
+  velocityX?: number;
+  velocityY?: number;
+  isBurst?: boolean;
 }
 
 const MagicCursor = () => {
@@ -16,18 +19,32 @@ const MagicCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [wandRotation, setWandRotation] = useState(0);
 
-  const createParticle = useCallback((x: number, y: number): Particle => {
+  const createParticle = useCallback((x: number, y: number, isBurst = false): Particle => {
     const types: ('sparkle' | 'star' | 'circle')[] = ['sparkle', 'star', 'circle'];
+    const angle = Math.random() * Math.PI * 2;
+    const speed = isBurst ? Math.random() * 8 + 4 : 0;
+    
     return {
       id: Date.now() + Math.random(),
-      x: x + (Math.random() - 0.5) * 30,
-      y: y + (Math.random() - 0.5) * 30,
-      size: Math.random() * 8 + 4,
+      x: x + (Math.random() - 0.5) * (isBurst ? 10 : 30),
+      y: y + (Math.random() - 0.5) * (isBurst ? 10 : 30),
+      size: isBurst ? Math.random() * 12 + 6 : Math.random() * 8 + 4,
       opacity: 1,
       rotation: Math.random() * 360,
       type: types[Math.floor(Math.random() * types.length)],
+      velocityX: isBurst ? Math.cos(angle) * speed : 0,
+      velocityY: isBurst ? Math.sin(angle) * speed : 0,
+      isBurst,
     };
   }, []);
+
+  const createBurstParticles = useCallback((x: number, y: number) => {
+    const burstParticles: Particle[] = [];
+    for (let i = 0; i < 15; i++) {
+      burstParticles.push(createParticle(x, y, true));
+    }
+    setParticles(prev => [...prev, ...burstParticles]);
+  }, [createParticle]);
 
   useEffect(() => {
     let particleInterval: NodeJS.Timeout;
@@ -38,7 +55,6 @@ const MagicCursor = () => {
       setMousePos({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
 
-      // Calculate wand rotation based on movement direction
       const deltaX = e.clientX - lastX;
       const deltaY = e.clientY - lastY;
       const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
@@ -56,18 +72,26 @@ const MagicCursor = () => {
       setIsVisible(true);
     };
 
-    // Create particles on interval when mouse is moving
+    const handleClick = (e: MouseEvent) => {
+      createBurstParticles(e.clientX, e.clientY);
+    };
+
     particleInterval = setInterval(() => {
       if (isVisible) {
         setParticles(prev => {
           const newParticles = [...prev];
-          // Add new particle
-          if (newParticles.length < 20) {
+          if (newParticles.filter(p => !p.isBurst).length < 20) {
             newParticles.push(createParticle(mousePos.x, mousePos.y));
           }
-          // Fade and remove old particles
           return newParticles
-            .map(p => ({ ...p, opacity: p.opacity - 0.05, y: p.y - 1 }))
+            .map(p => ({
+              ...p,
+              opacity: p.opacity - (p.isBurst ? 0.03 : 0.05),
+              x: p.x + (p.velocityX || 0),
+              y: p.y + (p.velocityY || 0) - (p.isBurst ? 0 : 1),
+              velocityX: (p.velocityX || 0) * 0.95,
+              velocityY: (p.velocityY || 0) * 0.95 + (p.isBurst ? 0.2 : 0),
+            }))
             .filter(p => p.opacity > 0);
         });
       }
@@ -76,21 +100,23 @@ const MagicCursor = () => {
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
+    document.addEventListener("click", handleClick);
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
+      document.removeEventListener("click", handleClick);
       clearInterval(particleInterval);
     };
-  }, [isVisible, mousePos.x, mousePos.y, createParticle]);
+  }, [isVisible, mousePos.x, mousePos.y, createParticle, createBurstParticles]);
 
   const renderParticle = (particle: Particle) => {
     const baseStyle = {
       left: particle.x,
       top: particle.y,
       opacity: particle.opacity,
-      transform: `translate(-50%, -50%) rotate(${particle.rotation}deg)`,
+      transform: `translate(-50%, -50%) rotate(${particle.rotation}deg) scale(${particle.isBurst ? 1 + (1 - particle.opacity) * 0.5 : 1})`,
     };
 
     if (particle.type === 'star') {
@@ -104,7 +130,7 @@ const MagicCursor = () => {
         >
           <path
             d="M12 2L14 9L21 9L15.5 13.5L17.5 21L12 16.5L6.5 21L8.5 13.5L3 9L10 9L12 2Z"
-            fill="url(#starGradient)"
+            fill={particle.isBurst ? "#FF69B4" : "url(#starGradient)"}
             filter="url(#glow)"
           />
           <defs>
@@ -135,7 +161,7 @@ const MagicCursor = () => {
         >
           <path
             d="M12 0L13 10L24 12L13 14L12 24L11 14L0 12L11 10L12 0Z"
-            fill="#FFC0CB"
+            fill={particle.isBurst ? "#FFD1DC" : "#FFC0CB"}
             opacity="0.9"
           />
         </svg>
@@ -150,8 +176,12 @@ const MagicCursor = () => {
           ...baseStyle,
           width: particle.size,
           height: particle.size,
-          background: `radial-gradient(circle, rgba(255,182,193,1) 0%, rgba(255,105,180,0.5) 100%)`,
-          boxShadow: '0 0 6px 2px rgba(255,182,193,0.6)',
+          background: particle.isBurst 
+            ? `radial-gradient(circle, rgba(255,105,180,1) 0%, rgba(255,182,193,0.5) 100%)`
+            : `radial-gradient(circle, rgba(255,182,193,1) 0%, rgba(255,105,180,0.5) 100%)`,
+          boxShadow: particle.isBurst 
+            ? '0 0 10px 4px rgba(255,105,180,0.7)' 
+            : '0 0 6px 2px rgba(255,182,193,0.6)',
         }}
       />
     );
@@ -161,10 +191,8 @@ const MagicCursor = () => {
 
   return (
     <>
-      {/* Particles Trail */}
       {particles.map(renderParticle)}
 
-      {/* Glow Ring around cursor */}
       <div
         className="fixed pointer-events-none z-[9999] rounded-full"
         style={{
@@ -178,7 +206,6 @@ const MagicCursor = () => {
         }}
       />
 
-      {/* Magic Wand */}
       <div
         className="fixed pointer-events-none z-[10000] transition-transform duration-75"
         style={{
@@ -188,7 +215,6 @@ const MagicCursor = () => {
         }}
       >
         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" className="drop-shadow-lg">
-          {/* Wand glow effect */}
           <defs>
             <linearGradient id="wandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFD1DC" />
@@ -219,7 +245,6 @@ const MagicCursor = () => {
             </filter>
           </defs>
 
-          {/* Wand handle */}
           <rect
             x="20"
             y="20"
@@ -231,7 +256,6 @@ const MagicCursor = () => {
             transform="rotate(-45 20 20)"
           />
 
-          {/* Wand decorative bands */}
           <rect
             x="30"
             y="19"
@@ -243,7 +267,6 @@ const MagicCursor = () => {
             transform="rotate(-45 20 20)"
           />
 
-          {/* Star tip */}
           <g filter="url(#starGlow)">
             <path
               d="M8 8 L10 4 L12 8 L16 6 L12 10 L14 14 L10 12 L6 14 L8 10 L4 6 Z"
@@ -251,11 +274,9 @@ const MagicCursor = () => {
               stroke="#FF69B4"
               strokeWidth="0.5"
             />
-            {/* Inner star glow */}
             <circle cx="10" cy="9" r="2" fill="#FFF" opacity="0.8" />
           </g>
 
-          {/* Sparkle rays from star */}
           <g opacity="0.6" className="animate-pulse">
             <line x1="10" y1="2" x2="10" y2="0" stroke="#FFB6C1" strokeWidth="1" strokeLinecap="round" />
             <line x1="16" y1="5" x2="18" y2="3" stroke="#FFB6C1" strokeWidth="1" strokeLinecap="round" />
@@ -266,7 +287,6 @@ const MagicCursor = () => {
         </svg>
       </div>
 
-      {/* Shimmer trail effect */}
       <div
         className="fixed pointer-events-none z-[9997]"
         style={{
