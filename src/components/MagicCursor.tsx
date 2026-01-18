@@ -18,6 +18,17 @@ const MagicCursor = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [wandRotation, setWandRotation] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile/touch devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const createParticle = useCallback((x: number, y: number, isBurst = false): Particle => {
     const types: ('sparkle' | 'star' | 'circle')[] = ['sparkle', 'star', 'circle'];
@@ -187,7 +198,8 @@ const MagicCursor = () => {
     );
   };
 
-  if (!isVisible) return null;
+  // Hide on mobile devices
+  if (!isVisible || isMobile) return null;
 
   return (
     <>

@@ -162,37 +162,37 @@ const Menu = () => {
 
   return (
     <section id="menu" className="py-20 bg-cream relative overflow-hidden">
-      {/* Doodle decorations */}
-      <svg className="absolute top-10 right-10 w-24 h-24 text-pink-soft opacity-30" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+      {/* Doodle decorations - hidden on mobile */}
+      <svg className="absolute top-10 right-4 sm:right-10 w-16 sm:w-24 h-16 sm:h-24 text-pink-soft opacity-30 hidden sm:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="50" cy="50" r="40" strokeDasharray="8 4"/>
         <circle cx="50" cy="50" r="25" strokeDasharray="4 4"/>
       </svg>
-      <svg className="absolute bottom-20 left-10 w-20 h-20 text-primary opacity-20" viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg className="absolute bottom-20 left-4 sm:left-10 w-14 sm:w-20 h-14 sm:h-20 text-primary opacity-20 hidden sm:block" viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M10 40 Q40 10 70 40 Q40 70 10 40" strokeLinejoin="round"/>
       </svg>
 
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <span className="inline-block font-cute text-primary font-semibold text-sm uppercase tracking-wider mb-2">
+        <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+          <span className="inline-block font-cute text-primary font-semibold text-xs sm:text-sm uppercase tracking-wider mb-2">
             Our Delicious Offerings
           </span>
-          <h2 className="font-display text-4xl md:text-5xl text-foreground mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-3 sm:mb-4">
             The Pink Menu
           </h2>
-          <p className="font-body text-muted-foreground max-w-2xl mx-auto">
+          <p className="font-body text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
             Every dish is crafted with love, served with a smile, and guaranteed
             to make your taste buds dance with joy!
           </p>
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2">
           {menuCategories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`font-cute font-semibold px-6 py-2.5 rounded-full transition-all ${
+              className={`font-cute font-semibold px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base rounded-full transition-all ${
                 activeCategory === category
                   ? "bg-primary text-primary-foreground shadow-pink"
                   : "bg-card text-foreground hover:bg-pink-soft border border-border"
@@ -204,11 +204,11 @@ const Menu = () => {
         </div>
 
         {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
-              className={`bg-card rounded-3xl p-6 shadow-pink hover:shadow-pink-lg transition-all hover:-translate-y-2 border-2 ${item.borderColor} group animate-scale-in`}
+              className={`bg-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-pink hover:shadow-pink-lg transition-all hover:-translate-y-2 border-2 ${item.borderColor} group animate-scale-in`}
               style={{ 
                 animationDelay: `${index * 0.1}s`,
                 boxShadow: `0 8px 30px ${item.accentColor}25`,
@@ -217,7 +217,7 @@ const Menu = () => {
               {/* Badge */}
               {item.badge && (
                 <Badge
-                  className={`${item.badgeColor} text-white font-cute mb-3`}
+                  className={`${item.badgeColor} text-white font-cute mb-2 sm:mb-3 text-xs`}
                 >
                   {item.badge === "Best Seller" && <Flame className="w-3 h-3 mr-1" />}
                   {item.badge}
@@ -225,9 +225,9 @@ const Menu = () => {
               )}
 
               {/* Image & Name */}
-              <div className="flex items-start gap-4 mb-4">
+              <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                 <div 
-                  className={`w-20 h-20 rounded-2xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform border-2 ${item.borderColor}`}
+                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform border-2 ${item.borderColor}`}
                   style={{ boxShadow: `0 4px 15px ${item.accentColor}30` }}
                 >
                   <img 
@@ -236,43 +236,43 @@ const Menu = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <h3 
-                    className="font-display text-xl mb-1"
+                    className="font-display text-lg sm:text-xl mb-1 truncate"
                     style={{ color: item.accentColor }}
                   >
                     {item.name}
                   </h3>
-                  <p className="font-body text-sm text-muted-foreground">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground line-clamp-2">
                     {item.description}
                   </p>
                 </div>
               </div>
 
               {/* Rating & Price */}
-              <div className="flex items-center justify-between pt-4 border-t border-border">
+              <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
                 <div className="flex items-center gap-1">
                   <Star 
-                    className="w-4 h-4 fill-current" 
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" 
                     style={{ color: item.accentColor }}
                   />
-                  <span className="font-cute text-sm font-semibold text-foreground">
+                  <span className="font-cute text-xs sm:text-sm font-semibold text-foreground">
                     {item.rating}
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <span 
-                    className="font-display text-2xl"
+                    className="font-display text-xl sm:text-2xl"
                     style={{ color: item.accentColor }}
                   >
                     ₹{item.price}
                   </span>
                   <Button
                     size="sm"
-                    className="rounded-full text-white"
+                    className="rounded-full text-white h-8 w-8 sm:h-9 sm:w-9 p-0"
                     style={{ backgroundColor: item.accentColor }}
                   >
-                    <Heart className="w-4 h-4" />
+                    <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </Button>
                 </div>
               </div>
@@ -281,10 +281,10 @@ const Menu = () => {
         </div>
 
         {/* View Full Menu CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 sm:mt-12">
           <Button
             size="lg"
-            className="gradient-button text-primary-foreground font-semibold rounded-full px-10 py-6 text-lg shadow-pink-lg hover:scale-105 transition-all"
+            className="gradient-button text-primary-foreground font-semibold rounded-full px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg shadow-pink-lg hover:scale-105 transition-all"
           >
             View Full Menu
           </Button>
