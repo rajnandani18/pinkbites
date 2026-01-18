@@ -14,7 +14,9 @@ const menuItems = [
     category: "Burgers",
     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
     badge: "Best Seller",
-    badgeColor: "bg-primary",
+    badgeColor: "bg-[#FF69B4]",
+    accentColor: "#FF69B4",
+    borderColor: "border-[#FFB6C1]",
     rating: 4.9,
   },
   {
@@ -25,7 +27,9 @@ const menuItems = [
     category: "Burgers",
     image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop",
     badge: "New",
-    badgeColor: "bg-pink-medium",
+    badgeColor: "bg-[#E0218A]",
+    accentColor: "#E0218A",
+    borderColor: "border-[#FF77FF]",
     rating: 4.8,
   },
   {
@@ -35,6 +39,8 @@ const menuItems = [
     price: 279,
     category: "Burgers",
     image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=400&fit=crop",
+    accentColor: "#FF6B6B",
+    borderColor: "border-[#FFB3B3]",
     rating: 4.7,
   },
   {
@@ -45,7 +51,9 @@ const menuItems = [
     category: "Fries",
     image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop",
     badge: "Fan Favorite",
-    badgeColor: "bg-pink-soft text-foreground",
+    badgeColor: "bg-[#B76E79]",
+    accentColor: "#B76E79",
+    borderColor: "border-[#E8C4C4]",
     rating: 4.9,
   },
   {
@@ -55,6 +63,8 @@ const menuItems = [
     price: 179,
     category: "Fries",
     image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=400&fit=crop",
+    accentColor: "#FFD700",
+    borderColor: "border-[#FFE5B4]",
     rating: 4.8,
   },
   {
@@ -64,6 +74,8 @@ const menuItems = [
     price: 149,
     category: "Fries",
     image: "https://images.unsplash.com/photo-1604152135912-04a022e23696?w=400&h=400&fit=crop",
+    accentColor: "#E97451",
+    borderColor: "border-[#FFCBA4]",
     rating: 4.6,
   },
   {
@@ -74,7 +86,9 @@ const menuItems = [
     category: "Drinks",
     image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=400&fit=crop",
     badge: "Refreshing",
-    badgeColor: "bg-pink-medium",
+    badgeColor: "bg-[#FFB7C5]",
+    accentColor: "#FFB7C5",
+    borderColor: "border-[#FFDAE0]",
     rating: 4.8,
   },
   {
@@ -84,6 +98,8 @@ const menuItems = [
     price: 149,
     category: "Drinks",
     image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=400&fit=crop",
+    accentColor: "#8B4789",
+    borderColor: "border-[#DDA0DD]",
     rating: 4.9,
   },
   {
@@ -93,6 +109,8 @@ const menuItems = [
     price: 169,
     category: "Drinks",
     image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop",
+    accentColor: "#87CEEB",
+    borderColor: "border-[#B0E0E6]",
     rating: 4.7,
   },
   {
@@ -103,7 +121,9 @@ const menuItems = [
     category: "Combos",
     image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=400&fit=crop",
     badge: "Best Value",
-    badgeColor: "bg-primary",
+    badgeColor: "bg-[#FF1493]",
+    accentColor: "#FF1493",
+    borderColor: "border-[#FFB6C1]",
     rating: 5.0,
   },
   {
@@ -114,7 +134,9 @@ const menuItems = [
     category: "Combos",
     image: "https://images.unsplash.com/photo-1551782450-17144efb9c50?w=400&h=400&fit=crop",
     badge: "Premium",
-    badgeColor: "bg-pink-medium",
+    badgeColor: "bg-[#E0218A]",
+    accentColor: "#E0218A",
+    borderColor: "border-[#FF77FF]",
     rating: 4.9,
   },
   {
@@ -124,6 +146,8 @@ const menuItems = [
     price: 499,
     category: "Combos",
     image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop",
+    accentColor: "#FF6B6B",
+    borderColor: "border-[#FFB3B3]",
     rating: 4.8,
   },
 ];
@@ -184,13 +208,16 @@ const Menu = () => {
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
-              className="bg-card rounded-3xl p-6 shadow-pink hover:shadow-pink-lg transition-all hover:-translate-y-2 border border-border group animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`bg-card rounded-3xl p-6 shadow-pink hover:shadow-pink-lg transition-all hover:-translate-y-2 border-2 ${item.borderColor} group animate-scale-in`}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                boxShadow: `0 8px 30px ${item.accentColor}25`,
+              }}
             >
               {/* Badge */}
               {item.badge && (
                 <Badge
-                  className={`${item.badgeColor} text-primary-foreground font-cute mb-3`}
+                  className={`${item.badgeColor} text-white font-cute mb-3`}
                 >
                   {item.badge === "Best Seller" && <Flame className="w-3 h-3 mr-1" />}
                   {item.badge}
@@ -199,7 +226,10 @@ const Menu = () => {
 
               {/* Image & Name */}
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform border-2 border-pink-soft">
+                <div 
+                  className={`w-20 h-20 rounded-2xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform border-2 ${item.borderColor}`}
+                  style={{ boxShadow: `0 4px 15px ${item.accentColor}30` }}
+                >
                   <img 
                     src={item.image} 
                     alt={item.name}
@@ -207,7 +237,10 @@ const Menu = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-display text-xl text-foreground mb-1">
+                  <h3 
+                    className="font-display text-xl mb-1"
+                    style={{ color: item.accentColor }}
+                  >
                     {item.name}
                   </h3>
                   <p className="font-body text-sm text-muted-foreground">
@@ -219,18 +252,25 @@ const Menu = () => {
               {/* Rating & Price */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 text-primary fill-current" />
+                  <Star 
+                    className="w-4 h-4 fill-current" 
+                    style={{ color: item.accentColor }}
+                  />
                   <span className="font-cute text-sm font-semibold text-foreground">
                     {item.rating}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-display text-2xl text-primary">
+                  <span 
+                    className="font-display text-2xl"
+                    style={{ color: item.accentColor }}
+                  >
                     ₹{item.price}
                   </span>
                   <Button
                     size="sm"
-                    className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    className="rounded-full text-white"
+                    style={{ backgroundColor: item.accentColor }}
                   >
                     <Heart className="w-4 h-4" />
                   </Button>
