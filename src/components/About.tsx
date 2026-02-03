@@ -4,22 +4,22 @@ const values = [
   {
     icon: Heart,
     title: "Made with Love",
-    description: "Every burger is handcrafted with passion and care, just like grandma used to make (but pinker!).",
+    description: "Every dessert is handcrafted with passion and care, just like grandma used to make (but pinker!).",
   },
   {
     icon: Sparkles,
     title: "Fresh & Fabulous",
-    description: "We source only the freshest ingredients daily. No frozen patties here—only fresh, delicious goodness!",
+    description: "We source only the freshest ingredients daily. No preservatives—only fresh, delicious goodness!",
   },
   {
     icon: Star,
     title: "Quality First",
-    description: "Premium beef, organic veggies, and our secret pink sauce that makes everything magical.",
+    description: "Premium ingredients, organic fruits, and our secret pink glaze that makes everything magical.",
   },
   {
     icon: Award,
     title: "Award Winning",
-    description: "Voted 'Best Themed Restaurant' 3 years running. Our customers are our biggest fans!",
+    description: "Voted 'Best Dessert Café' 3 years running. Our customers are our biggest fans!",
   },
 ];
 
@@ -49,12 +49,12 @@ const About = () => {
               <p>
                 Once upon a time, in a world that needed more color and joy, two
                 best friends dreamed of creating a magical place where delicious
-                burgers meet fabulous vibes.
+                desserts meet fabulous vibes.
               </p>
               <p>
                 <span className="text-primary font-semibold">PinkBites</span> was
                 born from a simple idea: food should make you smile, inside and
-                out! We believe that life's too short for boring burgers and
+                out! We believe that life's too short for boring desserts and
                 dull dining experiences.
               </p>
               <p className="hidden sm:block">
@@ -65,7 +65,7 @@ const About = () => {
               </p>
               <p className="text-foreground font-semibold italic text-sm sm:text-base">
                 "Because every girl deserves to feel like a princess while
-                enjoying her favorite burger!"
+                enjoying her favorite dessert!"
               </p>
             </div>
 
@@ -92,20 +92,13 @@ const About = () => {
               {/* Main Image */}
               <div className="aspect-square rounded-2xl sm:rounded-3xl overflow-hidden shadow-pink-lg border-4 border-pink-soft/50">
                 <img 
-                  src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&h=600&fit=crop"
-                  alt="Our restaurant team"
+                  src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&h=600&fit=crop"
+                  alt="Our cute pink café"
                   className="w-full h-full object-cover"
                 />
               </div>
 
-              {/* Floating Elements with doodle style borders */}
-              <div className="absolute -top-3 sm:-top-6 -left-3 sm:-left-6 bg-card rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-pink float border-2 border-dashed border-primary">
-                <img 
-                  src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=100&h=100&fit=crop"
-                  alt="Burger"
-                  className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl object-cover"
-                />
-              </div>
+              {/* Floating Heart Element */}
               <div className="absolute -bottom-3 sm:-bottom-6 -right-3 sm:-right-6 bg-primary rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-pink float" style={{ animationDelay: "0.5s" }}>
                 <Heart className="w-5 h-5 sm:w-8 sm:h-8 text-primary-foreground fill-current" />
               </div>
