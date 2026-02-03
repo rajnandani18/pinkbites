@@ -54,7 +54,7 @@ const Hero = () => {
             </h1>
 
             <p className="font-body text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-              Indulge in our dreamy burgers & crispy fries, crafted with love and
+              Indulge in our dreamy cakes, pastries & fresh smoothies, crafted with love and
               a sprinkle of magic. Every bite is a pink-tastic experience!
             </p>
 
@@ -111,8 +111,8 @@ const Hero = () => {
               {/* Floating Food Images - Smaller on mobile */}
               <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 bg-card rounded-xl sm:rounded-2xl p-1.5 sm:p-2 shadow-pink float border border-border overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=100&h=100&fit=crop"
-                  alt="Crispy fries"
+                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=100&h=100&fit=crop"
+                  alt="Pink cake"
                   className="w-10 h-10 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl object-cover"
                 />
               </div>
