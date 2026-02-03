@@ -100,9 +100,9 @@ const Hero = () => {
               {/* Main Burger Image */}
               <div className="relative z-10 p-4 sm:p-8">
                 <div className="aspect-square rounded-full bg-gradient-to-br from-card to-pink-light shadow-pink-lg overflow-hidden border-4 border-pink-soft/50">
-                  <img 
-                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=600&fit=crop"
-                    alt="Delicious signature burger"
+                <img 
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=600&fit=crop"
+                    alt="Delicious pink cake"
                     className="w-full h-full object-cover"
                   />
                 </div>
